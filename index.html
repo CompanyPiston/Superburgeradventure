@@ -41,7 +41,7 @@
       transition: background 1.2s ease, border-color 1.2s ease, box-shadow 1.2s ease;
     }
 
-    /* Измерение желудка */
+    /* Измерение 2: Желудок */
     #game-container.stomach-theme {
       background: linear-gradient(to bottom, #091a0c 0%, #17381a 60%, #0d240e 100%);
       border-color: #00ff66;
@@ -149,7 +149,7 @@
 
     @keyframes moveClouds { from { left: 100%; } to { left: -200px; } }
 
-    /* Земля */
+    /* Земля / Дно желудка */
     #ground {
       position: absolute; bottom: 0; width: 100%; height: 60px;
       background-color: #8c4a27;
@@ -170,7 +170,7 @@
         radial-gradient(circle, #1e4f24 25%, transparent 26%);
     }
 
-    /* Бургер */
+    /* ТЕКСТУРА БУРГЕРА (SVG) */
     #burger {
       position: absolute; width: 60px; height: 60px;
       bottom: 60px; left: 80px;
@@ -180,7 +180,7 @@
       transition: transform 0.2s ease, opacity 0.3s;
     }
 
-    /* Рука Великана */
+    /* ТЕКСТУРА РУКИ ВЕЛИКАНА (SVG) */
     #giant-hand {
       position: absolute;
       top: -260px;
@@ -196,7 +196,7 @@
       filter: drop-shadow(0 15px 15px rgba(0,0,0,0.6));
     }
 
-    /* Надпись Уровень 2 */
+    /* НАДПИСЬ УРОВЕНЬ 2 */
     #level2-title {
       position: absolute;
       top: 40%;
@@ -215,6 +215,7 @@
 
     #obstacle { position: absolute; bottom: 60px; right: -100px; z-index: 3; }
 
+    /* ТЕКСТУРЫ ПРЕПЯТСТВИЙ (SVG) */
     .type-spike {
       width: 40px; height: 50px;
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 50"><defs><linearGradient id="metal" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="%23555"/><stop offset="50%" stop-color="%23aaa"/><stop offset="100%" stop-color="%23333"/></linearGradient></defs><polygon points="20,0 0,50 40,50" fill="url(%23metal)"/><line x1="20" y1="0" x2="20" y2="50" stroke="%23222" stroke-width="2"/></svg>');
@@ -259,10 +260,11 @@
     }
   </style>
 </head>
-<body>
+  <body>
 
   <div id="game-container">
     
+    <!-- Экран входа по коду -->
     <div id="auth-screen" class="overlay-screen">
       <h2>ВВЕДИТЕ КОД ДОСТУПА</h2>
       <input type="text" id="access-code-input" class="code-input" placeholder="Введите код..." maxlength="10">
@@ -270,6 +272,7 @@
       <p id="auth-error" style="color: #ff4757; display: none;">Неверный код!</p>
     </div>
 
+    <!-- Меню создания кодов (Админ) -->
     <div id="admin-screen" class="overlay-screen" style="display: none;">
       <button id="back-admin-btn" class="action-btn" onclick="exitAdminMenu()">← Назад</button>
       <h2>МЕНЮ СОЗДАНИЯ КОДОВ</h2>
@@ -280,6 +283,7 @@
       <div id="code-list"></div>
     </div>
 
+    <!-- Заставка разработчика -->
     <div id="intro-screen">
       <h1>Company Piston</h1>
     </div>
@@ -288,38 +292,43 @@
 
     <div id="click-zone"></div>
 
+    <!-- Главное меню -->
     <div id="main-menu" style="display: none;">
       <h1>ПРИКЛЮЧЕНИЯ БУРГЕРА</h1>
       <button class="menu-btn" id="start-btn" onclick="startGame()">Начать</button>
       <button class="menu-btn" id="credits-btn" onclick="openCredits()">Credits</button>
     </div>
 
+    <!-- Экран авторов -->
     <div id="credits-screen">
       <button id="back-btn" onclick="closeCredits()">Назад</button>
       <p>5 бургеров</p>
     </div>
 
+    <!-- Декоративные облака -->
     <div class="cloud cloud1"></div>
     <div class="cloud cloud2"></div>
 
+    <!-- UI Игры -->
     <div id="ui">
       <div id="lives-display">Жизни: ❤️❤️❤️</div>
       <div id="score-display">Очки: 00000</div>
     </div>
     
+    <!-- Игровые элементы -->
     <div id="level2-title">УРОВЕНЬ 2</div>
     <div id="burger"></div>
     <div id="giant-hand"></div>
     <div id="obstacle" class="type-spike"></div>
     <div id="ground"></div>
 
+    <!-- Конец игры -->
     <div id="game-over-screen">
       <h1>ИГРА ОКОНЧАНА</h1>
       <button id="restart-btn" onclick="resetGame()">Начать заново</button>
     </div>
   </div>
-
-  <script>
+      <script>
     // Система авторизации и кодов
     let globalCodes = ["1111"];
 
@@ -345,6 +354,7 @@
     const ground = document.getElementById('ground');
     const level2Title = document.getElementById('level2-title');
 
+    // Игровые переменные
     let isJumping = false;
     let burgerY = 0;
     let gravity = 0.9;
@@ -365,7 +375,7 @@
     let isAcidMode = false;
     let isCutscene = false;
 
-    // Звуки Web Audio API
+    // Звуки через Web Audio API
     let audioCtx = null;
 
     function playEatingSounds() {
@@ -473,178 +483,194 @@
 
     const NORMAL_OBSTACLES = [
       { name: 'spike', className: 'type-spike', width: 40, height: 45 },
-      { name: 'wall', className: 'type-wall', width: 45, height: 80 },
-      { name: 'stairs', className: 'type-stairs', width: 65, height: 55 }
+      { name: 'wall', className: 'type-wall', width: 45, height: 85 },
+      { name: 'stairs', className: 'type-stairs', width: 65, height: 60 }
     ];
 
-    const ACID_OBSTACLE = { name: 'acid-spike', className: 'type-acid-spike', width: 45, height: 55 };
+    function jump() {
+      if (!isJumping && !isGameOver && isGameStarted && !isCutscene) {
+        isJumping = true;
+        velocity = 16;
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' || e.code === 'ArrowUp') {
+        e.preventDefault();
+        jump();
+      }
+    });
+
+    clickZone.addEventListener('touchstart', (e) => { e.preventDefault(); jump(); });
+    clickZone.addEventListener('mousedown', (e) => { e.preventDefault(); jump(); });
 
     function startGame() {
-      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       mainMenu.style.display = 'none';
       clickZone.style.display = 'block';
       isGameStarted = true;
-      spawnNewObstacle();
-      requestAnimationFrame(gameLoop);
-    }
-
-    function jump() {
-      if (!isGameStarted || isCutscene) return;
-      if (!isJumping && !isGameOver) {
-        isJumping = true;
-        velocity = 15.5;
-      }
-    }
-
-    clickZone.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      jump();
-    }, { passive: false });
-
-    clickZone.addEventListener('mousedown', jump);
-
-    function spawnNewObstacle() {
-      let selected = isAcidMode ? ACID_OBSTACLE : NORMAL_OBSTACLES[Math.floor(Math.random() * NORMAL_OBSTACLES.length)];
-      currentObstacleType = selected.name;
-      obstacleWidth = selected.width;
-      obstacleHeight = selected.height;
-      obstacle.className = selected.className;
-      obstacleX = container.clientWidth + Math.random() * 150;
-    }
-
-    function triggerGiantCutscene() {
-      isCutscene = true;
-      obstacle.style.display = 'none';
-
-      // Рука забирает бургер
-      setTimeout(() => { giantHand.style.transform = 'translateY(240px)'; }, 200);
-      setTimeout(() => {
-        burger.style.transition = 'transform 1.2s ease';
-        burger.style.transform = 'translateY(-250px)';
-        giantHand.style.transform = 'translateY(-150px)';
-      }, 1600);
-
-      // Звуки и пауза 5 секунд
-      setTimeout(() => { playEatingSounds(); }, 2600);
-
-      // Переход на Уровень 2 (2600ms + 5000ms)
-      setTimeout(() => {
-        isAcidMode = true;
-        score = 0;
-        lives = 5;
-        updateLivesUI();
-
-        container.classList.add('stomach-theme');
-        ground.classList.add('stomach-ground');
-
-        burger.style.transition = 'none';
-        burger.style.transform = 'translateY(0px)';
-        burger.style.bottom = '60px';
-        giantHand.style.transform = 'translateY(0px)';
-        obstacle.style.display = 'block';
-
-        level2Title.style.opacity = '1';
-        setTimeout(() => { level2Title.style.opacity = '0'; }, 2000);
-
-        isCutscene = false;
-        spawnNewObstacle();
-        requestAnimationFrame(gameLoop);
-      }, 7600);
-    }
-
-    function gameLoop() {
-      if (isGameOver || !isGameStarted || isCutscene) return;
-
-      score += 15;
-
-      if (score >= 100000 && !isAcidMode && !isCutscene) {
-        triggerGiantCutscene();
-        return;
-      }
-
-      const effectiveScore = Math.min(score, 50000);
-      const speedIncrements = Math.floor(effectiveScore / 10000);
-      spikeSpeed = baseSpeed + (speedIncrements * 2.5);
-
-      scoreDisplay.innerText = `Очки: ${String(Math.floor(score)).padStart(5, '0')}`;
-
-      if (isJumping) {
-        burgerY += velocity;
-        velocity -= gravity;
-        if (burgerY <= 0) {
-          burgerY = 0;
-          isJumping = false;
-        }
-        burger.style.bottom = (60 + burgerY) + 'px';
-      }
-
-      obstacleX -= spikeSpeed;
-      if (obstacleX < -80) spawnNewObstacle();
-      obstacle.style.left = obstacleX + 'px';
-
-      if (obstacleX < 130 && obstacleX + obstacleWidth > 80 && burgerY < obstacleHeight && !isInvulnerable) {
-        takeDamage();
-      }
-
-      requestAnimationFrame(gameLoop);
-    }
-
-    function takeDamage() {
-      lives--;
-      updateLivesUI();
-      isInvulnerable = true;
-      burger.style.opacity = '0.5';
-
-      setTimeout(() => {
-        isInvulnerable = false;
-        burger.style.opacity = '1';
-      }, 1000);
-
-      if (lives <= 0) endGame();
-    }
-
-    function updateLivesUI() {
-      let hearts = '';
-      for (let i = 0; i < lives; i++) hearts += '❤️';
-      livesDisplay.innerText = `Жизни: ${hearts}`;
-    }
-
-    function endGame() {
-      isGameOver = true;
-      gameOverScreen.style.display = 'flex';
+      resetGame();
     }
 
     function resetGame() {
       lives = 3;
       score = 0;
       spikeSpeed = baseSpeed;
-      burgerY = 0;
-      isJumping = false;
       isGameOver = false;
       isInvulnerable = false;
       isAcidMode = false;
       isCutscene = false;
+      burgerY = 0;
+      velocity = 0;
+      isJumping = false;
 
       container.classList.remove('stomach-theme');
       ground.classList.remove('stomach-ground');
-
-      burger.style.transition = 'none';
-      burger.style.transform = 'translateY(0px)';
-      burger.style.bottom = '60px';
-      burger.style.opacity = '1';
       giantHand.style.transform = 'translateY(0px)';
-      obstacle.style.display = 'block';
+      burger.style.opacity = '1';
       level2Title.style.opacity = '0';
 
-      scoreDisplay.innerText = 'Очки: 00000';
-      updateLivesUI();
+      updateLivesDisplay();
+      scoreDisplay.innerText = `Очки: 00000`;
       gameOverScreen.style.display = 'none';
-
-      spawnNewObstacle();
+      
+      resetObstacle();
       requestAnimationFrame(gameLoop);
     }
 
+    function updateLivesDisplay() {
+      livesDisplay.innerText = 'Жизни: ' + '❤️'.repeat(Math.max(0, lives));
+    }
+
+    function resetObstacle() {
+      obstacleX = container.clientWidth + 50;
+      
+      if (!isAcidMode) {
+        const randomObj = NORMAL_OBSTACLES[Math.floor(Math.random() * NORMAL_OBSTACLES.length)];
+        currentObstacleType = randomObj.name;
+        obstacle.className = randomObj.className;
+        obstacleWidth = randomObj.width;
+        obstacleHeight = randomObj.height;
+      } else {
+        currentObstacleType = 'acid-spike';
+        obstacle.className = 'type-acid-spike';
+        obstacleWidth = 45;
+        obstacleHeight = 55;
+      }
+      
+      obstacle.style.right = '-100px';
+    }
+
+    function triggerLevel2Cutscene() {
+      isCutscene = true;
+      obstacleX = container.clientWidth + 200;
+      obstacle.style.left = obstacleX + 'px';
+
+      // 1. Рука спускается и хватает бургер
+      giantHand.style.transform = 'translateY(210px)';
+
+      setTimeout(() => {
+        playEatingSounds();
+        
+        // 2. Рука поднимет бургер вверх
+        giantHand.style.transform = 'translateY(-100px)';
+        burger.style.transform = 'translateY(-300px)';
+        burger.style.opacity = '0';
+
+        setTimeout(() => {
+          // 3. Переход в желудок (Уровень 2)
+          isAcidMode = true;
+          container.classList.add('stomach-theme');
+          ground.classList.add('stomach-ground');
+
+          // Надпись Уровень 2
+          level2Title.style.opacity = '1';
+          setTimeout(() => { level2Title.style.opacity = '0'; }, 2000);
+
+          // Спавн бургера обратно
+          burgerY = 0;
+          burger.style.transform = 'translateY(0px)';
+          burger.style.opacity = '1';
+          
+          isCutscene = false;
+          resetObstacle();
+        }, 3000);
+
+      }, 1200);
+    }
+
+    function takeDamage() {
+      lives--;
+      updateLivesDisplay();
+      
+      isInvulnerable = true;
+      burger.style.opacity = '0.4';
+
+      if (lives <= 0) {
+        isGameOver = true;
+        gameOverScreen.style.display = 'flex';
+      } else {
+        setTimeout(() => {
+          isInvulnerable = false;
+          burger.style.opacity = '1';
+        }, 1200);
+      }
+    }
+
+    function gameLoop() {
+      if (isGameOver) return;
+
+      if (!isCutscene) {
+        // Физика прыжка
+        if (isJumping) {
+          burgerY += velocity;
+          velocity -= gravity;
+          if (burgerY <= 0) {
+            burgerY = 0;
+            isJumping = false;
+          }
+        }
+        burger.style.bottom = (60 + burgerY) + 'px';
+
+        // Движение препятствия
+        obstacleX -= spikeSpeed;
+        obstacle.style.left = obstacleX + 'px';
+
+        if (obstacleX < -obstacleWidth) {
+          score += 10;
+          scoreDisplay.innerText = `Очки: ${String(score).padStart(5, '0')}`;
+          
+          // Проверка перехода на Уровень 2
+          if (score >= 100 && !isAcidMode) {
+            triggerLevel2Cutscene();
+          } else {
+            spikeSpeed += 0.25;
+            resetObstacle();
+          }
+        }
+
+        // Проверка столкновений
+        const burgerLeft = 80;
+        const burgerRight = 80 + 50;
+        const obstacleLeft = obstacleX;
+        const obstacleRight = obstacleX + obstacleWidth;
+
+        if (
+          burgerRight > obstacleLeft && 
+          burgerLeft < obstacleRight && 
+          burgerY < (obstacleHeight - 10)
+        ) {
+          if (!isInvulnerable) {
+            takeDamage();
+          }
+        }
+      }
+
+      requestAnimationFrame(gameLoop);
+    }
+
+    // Старт загрузки
     loadSavedCodes();
   </script>
 </body>
 </html>
+
