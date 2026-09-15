@@ -14,7 +14,6 @@
       -webkit-touch-callout: none;
       touch-action: manipulation;
     }
-
     body {
       background-color: #70c5ce;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -26,7 +25,6 @@
       overflow: hidden;
       transition: background-color 1.2s ease;
     }
-
     #game-container {
       position: relative;
       width: 100%;
@@ -40,21 +38,18 @@
       box-shadow: 0 15px 35px rgba(0,0,0,0.5);
       transition: background 1.2s ease, border-color 1.2s ease, box-shadow 1.2s ease;
     }
-
     /* Измерение 2: Желудок */
     #game-container.stomach-theme {
       background: linear-gradient(to bottom, #091a0c 0%, #17381a 60%, #0d240e 100%);
       border-color: #00ff66;
       box-shadow: 0 0 30px rgba(0, 255, 102, 0.4);
     }
-
     /* Экраны блокировки и управления кодами */
     .overlay-screen {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.92); display: flex; flex-direction: column;
       justify-content: center; align-items: center; gap: 12px; z-index: 200; color: white;
     }
-
     .code-input {
       padding: 10px 15px; font-size: 20px; border-radius: 8px; border: 2px solid #2ed573;
       text-align: center; outline: none; background: #222; color: #fff; width: 220px;
@@ -68,7 +63,6 @@
     #back-admin-btn {
       position: absolute; top: 15px; left: 15px; background: #e74c3c;
     }
-
     #code-list {
       max-height: 90px; overflow-y: auto; background: #111; padding: 8px;
       border-radius: 6px; width: 220px; text-align: center; font-size: 14px;
@@ -80,7 +74,6 @@
       background-color: #000000; display: flex; justify-content: center; align-items: center;
       z-index: 100; opacity: 1; transition: opacity 1.5s ease-in-out;
     }
-
     #intro-screen h1 {
       color: #ffffff; font-size: 32px; letter-spacing: 4px;
       text-transform: uppercase; font-weight: 300; opacity: 0;
@@ -92,6 +85,19 @@
       40% { opacity: 1; transform: scale(1); }
       70% { opacity: 1; transform: scale(1); }
       100% { opacity: 0; transform: scale(1.05); }
+    }
+    button,
+    input,
+    #click-zone {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      user-select: none;
+      outline: none;
+    }
+
+    button:focus,
+    button:active {
+      outline: none;
     }
 
     #fullscreen-btn {
@@ -105,7 +111,6 @@
       display: none; position: absolute; top: 0; left: 0;
       width: 100%; height: 100%; z-index: 5; cursor: pointer;
     }
-
     #main-menu {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.85); display: flex; flex-direction: column;
@@ -118,7 +123,6 @@
       padding: 12px 35px; font-size: 20px; font-weight: bold;
       border: none; border-radius: 8px; cursor: pointer;
     }
-
     #start-btn { background-color: #2ed573; color: white; box-shadow: 0 5px 0 #26af5f; }
     #credits-btn { background-color: #eccc68; color: #333; box-shadow: 0 5px 0 #d4b100; }
 
@@ -127,13 +131,11 @@
       background-color: #000000; color: #ffffff; flex-direction: column;
       justify-content: center; align-items: center; font-size: 32px; font-weight: bold; z-index: 30;
     }
-
     #back-btn {
       position: absolute; top: 20px; left: 20px; padding: 10px 20px;
       background-color: #ffffff; color: #000000; border: none;
       border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer;
     }
-
     .cloud {
       position: absolute; background: #fff; border-radius: 50px;
       opacity: 0.9; z-index: 1; animation: moveClouds linear infinite;
@@ -142,34 +144,30 @@
     .cloud1 { width: 120px; height: 40px; top: 40px; animation-duration: 18s; }
     .cloud1::before { width: 50px; height: 50px; top: -20px; left: 20px; }
     .cloud1::after { width: 40px; height: 40px; top: -15px; left: 60px; }
-
     .cloud2 { width: 160px; height: 50px; top: 100px; animation-duration: 25s; animation-delay: -10s; transform: scale(0.8); opacity: 0.7; }
     .cloud2::before { width: 70px; height: 70px; top: -30px; left: 25px; }
     .cloud2::after { width: 50px; height: 50px; top: -20px; left: 80px; }
 
     @keyframes moveClouds { from { left: 100%; } to { left: -200px; } }
-
     /* Земля / Дно желудка */
     #ground {
       position: absolute; bottom: 0; width: 100%; height: 60px;
       background-color: #8c4a27;
       border-top: 6px solid #4eb82c;
-      background-image: 
+      background-image:
         radial-gradient(circle, #5c2f17 25%, transparent 26%),
         radial-gradient(circle, #3d1e0e 25%, transparent 26%);
       background-size: 18px 18px;
       background-position: 0 0, 9px 9px;
       z-index: 2; transition: all 1.2s ease;
     }
-
     #ground.stomach-ground {
       background-color: #143818;
       border-top: 6px solid #00ff66;
-      background-image: 
+      background-image:
         radial-gradient(circle, #081a0b 25%, transparent 26%),
         radial-gradient(circle, #1e4f24 25%, transparent 26%);
     }
-
     /* ТЕКСТУРА БУРГЕРА (SVG) */
     #burger {
       position: absolute; width: 60px; height: 60px;
@@ -179,7 +177,6 @@
       z-index: 3; filter: drop-shadow(0 6px 5px rgba(0,0,0,0.4));
       transition: transform 0.2s ease, opacity 0.3s;
     }
-
     /* ТЕКСТУРА РУКИ ВЕЛИКАНА (SVG) */
     #giant-hand {
       position: absolute;
@@ -195,7 +192,6 @@
       background-repeat: no-repeat;
       filter: drop-shadow(0 15px 15px rgba(0,0,0,0.6));
     }
-
     /* НАДПИСЬ УРОВЕНЬ 2 */
     #level2-title {
       position: absolute;
@@ -214,34 +210,29 @@
     }
 
     #obstacle { position: absolute; bottom: 60px; right: -100px; z-index: 3; }
-
     /* ТЕКСТУРЫ ПРЕПЯТСТВИЙ (SVG) */
     .type-spike {
       width: 40px; height: 50px;
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 50"><defs><linearGradient id="metal" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="%23555"/><stop offset="50%" stop-color="%23aaa"/><stop offset="100%" stop-color="%23333"/></linearGradient></defs><polygon points="20,0 0,50 40,50" fill="url(%23metal)"/><line x1="20" y1="0" x2="20" y2="50" stroke="%23222" stroke-width="2"/></svg>');
       background-size: contain; background-repeat: no-repeat;
     }
-
     .type-wall {
       width: 45px; height: 85px;
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 85"><rect x="0" y="0" width="45" height="85" fill="%23b03a2e" rx="4"/><rect x="3" y="3" width="39" height="37" fill="%23cd6155" rx="2"/><rect x="3" y="44" width="39" height="38" fill="%23cd6155" rx="2"/><line x1="0" y1="42" x2="45" y2="42" stroke="%23512e5f" stroke-width="4"/><line x1="22" y1="3" x2="22" y2="40" stroke="%23512e5f" stroke-width="2"/><line x1="18" y1="44" x2="18" y2="82" stroke="%23512e5f" stroke-width="2"/><rect x="0" y="0" width="45" height="85" fill="none" stroke="%231f618d" stroke-width="3" rx="4"/></svg>');
       background-size: contain; background-repeat: no-repeat;
       filter: drop-shadow(0 6px 8px rgba(0,0,0,0.5));
     }
-
     .type-stairs {
       width: 65px; height: 60px;
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 60"><path d="M0 60 L0 40 L22 40 L22 20 L44 20 L44 0 L65 0 L65 60 Z" fill="%23626567"/><path d="M0 40 L22 40 L22 20 L44 20 L44 0 L65 0 L65 10 L44 10 L44 30 L22 30 L22 50 L0 50 Z" fill="%239896a4"/><path d="M0 60 L0 40 L22 40 L22 20 L44 20 L44 0 L65 0 L65 60 Z" fill="none" stroke="%231c2833" stroke-width="3"/></svg>');
       background-size: contain; background-repeat: no-repeat;
     }
-
     .type-acid-spike {
       width: 45px; height: 55px;
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 55"><polygon points="22,0 0,55 45,55" fill="%2300ff66"/><polygon points="22,0 22,55 45,55" fill="%2300aa44"/><polygon points="22,0 12,55 22,55" fill="%23ccffdd"/></svg>');
       background-size: contain; background-repeat: no-repeat;
       filter: drop-shadow(0 0 12px #00ff66);
     }
-
     #ui {
       position: absolute; top: 15px; left: 20px; display: flex; gap: 20px;
       font-size: 20px; font-weight: bold; color: white; text-shadow: 2px 2px 4px #000; z-index: 4;
@@ -252,429 +243,861 @@
       background: rgba(0, 0, 0, 0.75); flex-direction: column; justify-content: center;
       align-items: center; color: white; z-index: 15;
     }
-
     #game-over-screen h1 { font-size: 40px; color: #ff4757; text-shadow: 3px 3px 0px #000; margin-bottom: 20px; }
     #restart-btn {
       padding: 14px 32px; font-size: 20px; font-weight: bold;
       background-color: #2ed573; color: white; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 5px 0px #26af5f;
     }
-  </style>
-</head>
-  <body>
-
-  <div id="game-container">
-    
-    <!-- Экран входа по коду -->
-    <div id="auth-screen" class="overlay-screen">
-      <h2>ВВЕДИТЕ КОД ДОСТУПА</h2>
-      <input type="text" id="access-code-input" class="code-input" placeholder="Введите код..." maxlength="10">
-      <button class="action-btn" onclick="checkAccessCode()">Войти</button>
-      <p id="auth-error" style="color: #ff4757; display: none;">Неверный код!</p>
-    </div>
-
-    <!-- Меню создания кодов (Админ) -->
-    <div id="admin-screen" class="overlay-screen" style="display: none;">
-      <button id="back-admin-btn" class="action-btn" onclick="exitAdminMenu()">← Назад</button>
-      <h2>МЕНЮ СОЗДАНИЯ КОДОВ</h2>
-      <input type="text" id="new-code-input" class="code-input" placeholder="Новый код..." maxlength="10">
-      <button class="action-btn" onclick="createNewCode()">Создать код</button>
-      
-      <p style="font-size: 14px; margin-top: 5px;">Созданные коды:</p>
-      <div id="code-list"></div>
-    </div>
-
-    <!-- Заставка разработчика -->
-    <div id="intro-screen">
-      <h1>Company Piston</h1>
-    </div>
-
-    <button id="fullscreen-btn" onclick="toggleFullscreen()">⛶ На весь экран</button>
-
-    <div id="click-zone"></div>
-
-    <!-- Главное меню -->
-    <div id="main-menu" style="display: none;">
-      <h1>ПРИКЛЮЧЕНИЯ БУРГЕРА</h1>
-      <button class="menu-btn" id="start-btn" onclick="startGame()">Начать</button>
-      <button class="menu-btn" id="credits-btn" onclick="openCredits()">Credits</button>
-    </div>
-
-    <!-- Экран авторов -->
-    <div id="credits-screen">
-      <button id="back-btn" onclick="closeCredits()">Назад</button>
-      <p>5 бургеров</p>
-    </div>
-
-    <!-- Декоративные облака -->
-    <div class="cloud cloud1"></div>
-    <div class="cloud cloud2"></div>
-
-    <!-- UI Игры -->
-    <div id="ui">
-      <div id="lives-display">Жизни: ❤️❤️❤️</div>
-      <div id="score-display">Очки: 00000</div>
-    </div>
-    
-    <!-- Игровые элементы -->
-    <div id="level2-title">УРОВЕНЬ 2</div>
-    <div id="burger"></div>
-    <div id="giant-hand"></div>
-    <div id="obstacle" class="type-spike"></div>
-    <div id="ground"></div>
-
-    <!-- Конец игры -->
-    <div id="game-over-screen">
-      <h1>ИГРА ОКОНЧАНА</h1>
-      <button id="restart-btn" onclick="resetGame()">Начать заново</button>
-    </div>
-  </div>
-      <script>
-    // Система авторизации и кодов
-    let globalCodes = ["1111"];
-
-    const authScreen = document.getElementById('auth-screen');
-    const adminScreen = document.getElementById('admin-screen');
-    const accessInput = document.getElementById('access-code-input');
-    const newCodeInput = document.getElementById('new-code-input');
-    const authError = document.getElementById('auth-error');
-    const codeListDiv = document.getElementById('code-list');
-
-    // Элементы игры
-    const burger = document.getElementById('burger');
-    const giantHand = document.getElementById('giant-hand');
-    const obstacle = document.getElementById('obstacle');
-    const livesDisplay = document.getElementById('lives-display');
-    const scoreDisplay = document.getElementById('score-display');
-    const gameOverScreen = document.getElementById('game-over-screen');
-    const clickZone = document.getElementById('click-zone');
-    const mainMenu = document.getElementById('main-menu');
-    const creditsScreen = document.getElementById('credits-screen');
-    const introScreen = document.getElementById('intro-screen');
-    const container = document.getElementById('game-container');
-    const ground = document.getElementById('ground');
-    const level2Title = document.getElementById('level2-title');
-
-    // Игровые переменные
-    let isJumping = false;
-    let burgerY = 0;
-    let gravity = 0.9;
-    let velocity = 0;
-
-    let obstacleX = 850;
-    let baseSpeed = 6;
-    let spikeSpeed = 6;
-    let currentObstacleType = 'spike';
-    let obstacleWidth = 40;
-    let obstacleHeight = 50;
-
-    let lives = 3;
-    let score = 0;
-    let isGameOver = false;
-    let isInvulnerable = false;
-    let isGameStarted = false;
-    let isAcidMode = false;
-    let isCutscene = false;
-
-    // Звуки через Web Audio API
-    let audioCtx = null;
-
-    function playEatingSounds() {
-      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      
-      let soundCount = 10;
-      let interval = setInterval(() => {
-        if (soundCount <= 0) {
-          clearInterval(interval);
-          return;
-        }
-
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        
-        osc.type = soundCount % 2 === 0 ? 'sawtooth' : 'square';
-        osc.frequency.setValueAtTime(100 + Math.random() * 200, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(30, audioCtx.currentTime + 0.15);
-        
-        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.15);
-
-        soundCount--;
-      }, 450);
+    /* Убираем синюю подсветку при нажатии на Android */
+    button, input, #click-zone {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      user-select: none;
     }
 
-    // Сохранение и загрузка кодов
-    function loadSavedCodes() {
-      const saved = localStorage.getItem('burger_game_codes');
-      if (saved) globalCodes = JSON.parse(saved);
+    /* Счётчик бургеров */
+    #burger-balance {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      z-index: 60;
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px #000;
+      display: none;
+    }
+
+    /* Окно "Что нового" */
+    #whats-new-screen {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.94);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 210;
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+    #whats-new-screen h2 {
+      color: #f1c40f;
+      font-size: 34px;
+      margin-bottom: 25px;
+      text-shadow: 3px 3px 0 #000;
+    }
+    #whats-new-screen p {
+      font-size: 21px;
+      line-height: 1.7;
+      max-width: 620px;
+    }
+    #close-whats-new {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 45px;
+      height: 45px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: #e74c3c;
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 0 #b93227;
+    }
+
+    /* Анимация награды */
+    #reward-animation {
+      position: absolute;
+      left: 50%;
+      top: 42%;
+      transform: translate(-50%, -50%);
+      z-index: 300;
+      color: #f1c40f;
+      font-size: 38px;
+      font-weight: 900;
+      text-shadow: 3px 3px 0 #000;
+      pointer-events: none;
+      opacity: 0;
+      white-space: nowrap;
+    }
+    #reward-animation.show {
+      animation: rewardFloat 2s ease-out forwards;
+    }
+    @keyframes rewardFloat {
+      0% { opacity: 0; transform: translate(-50%, -20%) scale(0.7); }
+      20% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+      100% { opacity: 0; transform: translate(-50%, -170%) scale(1); }
+    }
+
+    /* Кнопки возрождения */
+    #revive-options {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .revive-btn {
+      padding: 10px 20px;
+      font-size: 17px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #revive-btn { background: #2ed573; color: white; box-shadow: 0 4px 0 #26af5f; }
+    #super-revive-btn { background: #9b59b6; color: white; box-shadow: 0 4px 0 #713d86; }
+
+  
+
+    /* Плавные анимации интерфейса */
+    button, input, .screen, #burger-balance, #score-display, #lives-display, #burger, #obstacle, #ground, #giant-hand, #level2-title {
+      transition: opacity 0.25s ease, transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+    }
+
+    button {
+      transition: transform 0.18s ease, opacity 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+    }
+
+    button:hover:not(:disabled) {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    button:active:not(:disabled) {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    #whats-new-screen, #game-over-screen, #credits-screen, #main-menu, #auth-screen, #admin-screen {
+      animation: screenFadeIn 0.45s ease both;
+    }
+
+    @keyframes screenFadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes smoothPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    #burger-balance {
+      animation: smoothPulse 2.5s ease-in-out infinite;
+    }
+</style>
+</head>
+<body>
+<div id="game-container">
+  <!-- Экран входа по коду -->
+  <div id="auth-screen" class="overlay-screen" style="display: none;">
+    <h2>ВВЕДИТЕ КОД ДОСТУПА</h2>
+    <input type="text" id="access-code-input" class="code-input" placeholder="Введите код..." maxlength="10">
+    <button class="action-btn" onclick="checkAccessCode()">Войти</button>
+    <p id="auth-error" style="color: #ff4757; display: none;">Неверный код!</p>
+  </div>
+
+  <!-- Меню создания кодов (Админ) -->
+  <div id="admin-screen" class="overlay-screen" style="display: none;">
+    <button id="back-admin-btn" class="action-btn" onclick="exitAdminMenu()">← Назад</button>
+    <h2>МЕНЮ СОЗДАНИЯ КОДОВ</h2>
+    <input type="text" id="new-code-input" class="code-input" placeholder="Новый код..." maxlength="10">
+    <button class="action-btn" onclick="createNewCode()">Создать код</button>
+
+    <p style="font-size: 14px; margin-top: 5px;">Созданные коды:</p>
+    <div id="code-list"></div>
+  </div>
+
+  <!-- Заставка разработчика -->
+  <div id="intro-screen">
+    <h1>Company Piston</h1>
+  </div>
+
+  <div id="whats-new-screen">
+    <button id="close-whats-new" onclick="closeWhatsNew()">×</button>
+    <h2>ЧТО НОВОГО</h2>
+    <p>Добавлен доп. прыжок и система возрождений.<br>
+    Теперь после каждой катки ты получаешь бургеры за набранные очки!</p>
+  </div>
+
+  <button id="fullscreen-btn" onclick="toggleFullscreen()">⛶ На весь экран</button>
+
+  <div id="click-zone"></div>
+  <div id="burger-balance">🍔 0</div>
+  <div id="reward-animation"></div>
+
+  <!-- Главное меню -->
+  <div id="main-menu" style="display: none;">
+    <h1>ПРИКЛЮЧЕНИЯ БУРГЕРА</h1>
+    <button class="menu-btn" id="start-btn" onclick="startGame()">Начать</button>
+    <button class="menu-btn" id="credits-btn" onclick="openCredits()">Credits</button>
+  </div>
+
+  <!-- Экран авторов -->
+  <div id="credits-screen">
+    <button id="back-btn" onclick="closeCredits()">Назад</button>
+    <p>5 бургеров</p>
+  </div>
+
+  <!-- Декоративные облака -->
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+
+  <!-- UI Игры -->
+  <div id="ui">
+    <div id="lives-display">Жизни: ❤️❤️❤️</div>
+    <div id="score-display">Очки: 00000</div>
+  </div>
+
+  <!-- Игровые элементы -->
+  <div id="level2-title">УРОВЕНЬ 2</div>
+  <div id="burger"></div>
+  <div id="giant-hand"></div>
+  <div id="obstacle" class="type-spike"></div>
+  <div id="ground"></div>
+
+  <!-- Конец игры -->
+  <div id="game-over-screen">
+    <h1>ИГРА ОКОНЧЕНА</h1>
+    <div id="revive-options">
+      <button id="revive-btn" class="revive-btn" onclick="reviveGame()">Возрождение — 10 🍔</button>
+      <button id="super-revive-btn" class="revive-btn" onclick="superReviveGame()">Супер возрождение — 15 🍔 → 10 ❤️</button>
+    </div>
+    <button id="restart-btn" onclick="finishGameAndRestart()">Начать заново — 0 🍔</button>
+  </div>
+</div>
+
+<script>
+  // Система авторизации и кодов
+  let globalCodes = ["1111"];
+  const authScreen = document.getElementById('auth-screen');
+  const adminScreen = document.getElementById('admin-screen');
+  const accessInput = document.getElementById('access-code-input');
+  const newCodeInput = document.getElementById('new-code-input');
+  const authError = document.getElementById('auth-error');
+  const codeListDiv = document.getElementById('code-list');
+
+  // Элементы игры
+  const burger = document.getElementById('burger');
+  const giantHand = document.getElementById('giant-hand');
+  const obstacle = document.getElementById('obstacle');
+  const livesDisplay = document.getElementById('lives-display');
+  const scoreDisplay = document.getElementById('score-display');
+  const gameOverScreen = document.getElementById('game-over-screen');
+  const clickZone = document.getElementById('click-zone');
+  const mainMenu = document.getElementById('main-menu');
+  const creditsScreen = document.getElementById('credits-screen');
+  const introScreen = document.getElementById('intro-screen');
+  const whatsNewScreen = document.getElementById('whats-new-screen');
+  const burgerBalance = document.getElementById('burger-balance');
+  const rewardAnimation = document.getElementById('reward-animation');
+  const reviveOptions = document.getElementById('revive-options');
+  const reviveBtn = document.getElementById('revive-btn');
+  const superReviveBtn = document.getElementById('super-revive-btn');
+  const container = document.getElementById('game-container');
+  const ground = document.getElementById('ground');
+  const level2Title = document.getElementById('level2-title');
+
+  // Игровые переменные
+  let isJumping = false;
+  let jumpCount = 0;
+  let burgerY = 0;
+  let gravity = 0.9;
+  let velocity = 0;
+
+  let obstacleX = 850;
+  let baseSpeed = 6;
+  let spikeSpeed = 6;
+  let currentObstacleType = 'spike';
+  let obstacleWidth = 40;
+  let obstacleHeight = 50;
+
+  let lives = 3;
+  let score = 0;
+
+  // Новый счётчик рубежей скорости
+  let lastSpeedMilestone = 0;
+
+  let isGameOver = false;
+  let rewardGivenThisGame = false;
+  let isInvulnerable = false;
+  let isGameStarted = false;
+  let isAcidMode = false;
+  let isCutscene = false;
+  let isSuperRevived = false;
+
+  // Звуки через Web Audio API
+  let audioCtx = null;
+
+  function playEatingSounds() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    let soundCount = 10;
+    let interval = setInterval(() => {
+      if (soundCount <= 0) {
+        clearInterval(interval);
+        return;
+      }
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = soundCount % 2 === 0 ? 'sawtooth' : 'square';
+      osc.frequency.setValueAtTime(100 + Math.random() * 200, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(30, audioCtx.currentTime + 0.15);
+
+      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.15);
+
+      soundCount--;
+    }, 450);
+  }
+
+  // Сохранение и загрузка кодов
+  function loadSavedCodes() {
+    const saved = localStorage.getItem('burger_game_codes');
+    if (saved) globalCodes = JSON.parse(saved);
+    renderCodeList();
+  }
+
+  function saveCodes() {
+    localStorage.setItem('burger_game_codes', JSON.stringify(globalCodes));
+  }
+
+  let burgerBalanceValue = Number(localStorage.getItem('burger_balance') || '0');
+
+  function formatBurgerBalance(value) {
+    return Number.isInteger(value) ? String(value) : value.toFixed(1);
+  }
+
+  function updateBurgerBalance() {
+    burgerBalance.innerText = `🍔 ${formatBurgerBalance(burgerBalanceValue)}`;
+  }
+
+  function saveBurgerBalance() {
+    localStorage.setItem('burger_balance', String(burgerBalanceValue));
+    updateBurgerBalance();
+  }
+
+  function getGameReward(finalScore) {
+    if (finalScore < 10000) return 0;
+    if (finalScore < 20000) return 0.5;
+    return Math.floor(finalScore / 10000) - 1;
+  }
+
+  function showRewardAnimation(amount) {
+    if (amount <= 0) return;
+    rewardAnimation.innerText = `+${formatBurgerBalance(amount)} 🍔`;
+    rewardAnimation.classList.remove('show');
+    void rewardAnimation.offsetWidth;
+    rewardAnimation.classList.add('show');
+  }
+
+  function giveGameReward(finalScore) {
+    const reward = getGameReward(finalScore);
+    if (reward > 0) {
+      burgerBalanceValue += reward;
+      saveBurgerBalance();
+      showRewardAnimation(reward);
+    } else {
+      updateBurgerBalance();
+    }
+  }
+
+  function closeWhatsNew() {
+    whatsNewScreen.style.display = 'none';
+    authScreen.style.display = 'flex';
+  }
+
+  function finishGameAndRestart() {
+    gameOverScreen.style.display = 'none';
+    reviveOptions.style.display = 'none';
+    resetGame();
+  }
+
+  function reviveGame() {
+    if (burgerBalanceValue < 10) return;
+    burgerBalanceValue -= 10;
+    saveBurgerBalance();
+    lives = 1;
+    isGameOver = false;
+    isInvulnerable = true;
+    jumpCount = 0;
+    velocity = 0;
+    burgerY = 0;
+    burger.style.bottom = '60px';
+    burger.style.opacity = '0.5';
+    gameOverScreen.style.display = 'none';
+    reviveOptions.style.display = 'none';
+    setTimeout(() => {
+      isInvulnerable = false;
+      burger.style.opacity = '1';
+    }, 1200);
+    requestAnimationFrame(gameLoop);
+  }
+
+  function superReviveGame() {
+    if (burgerBalanceValue < 15) return;
+    burgerBalanceValue -= 15;
+    saveBurgerBalance();
+    lives = 10;
+    isGameOver = false;
+    isSuperRevived = true;
+    // Скорость сразу становится такой, как на рубеже 40 000 очков.
+    spikeSpeed = baseSpeed + 4;
+    lastSpeedMilestone = 4;
+    isInvulnerable = true;
+    jumpCount = 0;
+    velocity = 0;
+    burgerY = 0;
+    burger.style.bottom = '60px';
+    burger.style.opacity = '0.5';
+    gameOverScreen.style.display = 'none';
+    reviveOptions.style.display = 'none';
+    setTimeout(() => {
+      isInvulnerable = false;
+      burger.style.opacity = '1';
+    }, 1800);
+    requestAnimationFrame(gameLoop);
+  }
+
+  function checkAccessCode() {
+    const code = accessInput.value.trim();
+
+    if (code === "6490") {
+      authScreen.style.display = 'none';
+      burgerBalance.style.display = 'block';
+      updateBurgerBalance();
+      adminScreen.style.display = 'flex';
+      renderCodeList();
+
+    } else if (globalCodes.includes(code)) {
+      authScreen.style.display = 'none';
+      burgerBalance.style.display = 'block';
+      updateBurgerBalance();
+      mainMenu.style.display = 'flex';
+
+    } else {
+      authError.style.display = 'block';
+    }
+  }
+
+  function createNewCode() {
+    const newCode = newCodeInput.value.trim();
+
+    if (newCode && !globalCodes.includes(newCode)) {
+      globalCodes.push(newCode);
+      newCodeInput.value = '';
+      saveCodes();
       renderCodeList();
     }
+  }
 
-    function saveCodes() {
-      localStorage.setItem('burger_game_codes', JSON.stringify(globalCodes));
-    }
+  function exitAdminMenu() {
+    adminScreen.style.display = 'none';
+    authScreen.style.display = 'flex';
+    accessInput.value = '';
+    authError.style.display = 'none';
+  }
 
-    function checkAccessCode() {
-      const code = accessInput.value.trim();
-      if (code === "6490") {
-        authScreen.style.display = 'none';
-        adminScreen.style.display = 'flex';
-        renderCodeList();
-      } else if (globalCodes.includes(code)) {
-        authScreen.style.display = 'none';
-        mainMenu.style.display = 'flex';
-        triggerIntroAnimation();
-      } else {
-        authError.style.display = 'block';
-      }
-    }
+  function renderCodeList() {
+    codeListDiv.innerHTML =
+      globalCodes.map(c => `<div>• ${c}</div>`).join('');
+  }
 
-    function createNewCode() {
-      const newCode = newCodeInput.value.trim();
-      if (newCode && !globalCodes.includes(newCode)) {
-        globalCodes.push(newCode);
-        newCodeInput.value = '';
-        saveCodes();
-        renderCodeList();
-      }
-    }
+  /*
+    ТИТРЫ:
 
-    function exitAdminMenu() {
-      adminScreen.style.display = 'none';
-      authScreen.style.display = 'flex';
-      accessInput.value = '';
-      authError.style.display = 'none';
-    }
+    Теперь игра начинается так:
 
-    function renderCodeList() {
-      codeListDiv.innerHTML = globalCodes.map(c => `<div>• ${c}</div>`).join('');
-    }
+    1. Company Piston
+    2. исчезают титры
+    3. появляется ввод кода
+    4. после правильного кода появляется главное меню
+  */
+  function triggerIntroAnimation() {
+    introScreen.style.display = 'flex';
+    introScreen.style.opacity = '1';
 
-    function triggerIntroAnimation() {
-      setTimeout(() => {
-        introScreen.style.opacity = '0';
-        setTimeout(() => { introScreen.style.display = 'none'; }, 1500);
-      }, 500);
-    }
-
-    async function toggleFullscreen() {
-      try {
-        const doc = window.document;
-        const docEl = container;
-        const requestFullscreen = docEl.requestFullscreen || docEl.webkitRequestFullscreen;
-        const exitFullscreen = doc.exitFullscreen || doc.webkitExitFullscreen;
-        const isFullscreen = doc.fullscreenElement || doc.webkitFullscreenElement;
-
-        if (!isFullscreen) {
-          if (requestFullscreen) await requestFullscreen.call(docEl);
-        } else {
-          if (exitFullscreen) await exitFullscreen.call(doc);
-        }
-      } catch (err) {}
-    }
-
-    function openCredits() { creditsScreen.style.display = 'flex'; }
-    function closeCredits() { creditsScreen.style.display = 'none'; }
-
-    const NORMAL_OBSTACLES = [
-      { name: 'spike', className: 'type-spike', width: 40, height: 45 },
-      { name: 'wall', className: 'type-wall', width: 45, height: 85 },
-      { name: 'stairs', className: 'type-stairs', width: 65, height: 60 }
-    ];
-
-    function jump() {
-      if (!isJumping && !isGameOver && isGameStarted && !isCutscene) {
-        isJumping = true;
-        velocity = 16;
-      }
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.code === 'Space' || e.code === 'ArrowUp') {
-        e.preventDefault();
-        jump();
-      }
-    });
-
-    clickZone.addEventListener('touchstart', (e) => { e.preventDefault(); jump(); });
-    clickZone.addEventListener('mousedown', (e) => { e.preventDefault(); jump(); });
-
-    function startGame() {
-      mainMenu.style.display = 'none';
-      clickZone.style.display = 'block';
-      isGameStarted = true;
-      resetGame();
-    }
-
-    function resetGame() {
-      lives = 3;
-      score = 0;
-      spikeSpeed = baseSpeed;
-      isGameOver = false;
-      isInvulnerable = false;
-      isAcidMode = false;
-      isCutscene = false;
-      burgerY = 0;
-      velocity = 0;
-      isJumping = false;
-
-      container.classList.remove('stomach-theme');
-      ground.classList.remove('stomach-ground');
-      giantHand.style.transform = 'translateY(0px)';
-      burger.style.opacity = '1';
-      level2Title.style.opacity = '0';
-
-      updateLivesDisplay();
-      scoreDisplay.innerText = `Очки: 000000`;
-      gameOverScreen.style.display = 'none';
-      
-      resetObstacle();
-      requestAnimationFrame(gameLoop);
-    }
-
-    function updateLivesDisplay() {
-      livesDisplay.innerText = 'Жизни: ' + '❤️'.repeat(Math.max(0, lives));
-    }
-
-    function resetObstacle() {
-      obstacleX = container.clientWidth + 50;
-      
-      if (!isAcidMode) {
-        const randomObj = NORMAL_OBSTACLES[Math.floor(Math.random() * NORMAL_OBSTACLES.length)];
-        currentObstacleType = randomObj.name;
-        obstacle.className = randomObj.className;
-        obstacleWidth = randomObj.width;
-        obstacleHeight = randomObj.height;
-      } else {
-        currentObstacleType = 'acid-spike';
-        obstacle.className = 'type-acid-spike';
-        obstacleWidth = 45;
-        obstacleHeight = 55;
-      }
-      
-      obstacle.style.right = '-100px';
-    }
-
-    function triggerLevel2Cutscene() {
-      isCutscene = true;
-      obstacleX = container.clientWidth + 200;
-      obstacle.style.left = obstacleX + 'px';
-
-      // 1. Рука спускается и хватает бургер
-      giantHand.style.transform = 'translateY(210px)';
+    setTimeout(() => {
+      introScreen.style.opacity = '0';
 
       setTimeout(() => {
-        playEatingSounds();
-        
-        // 2. Рука поднимет бургер вверх
-        giantHand.style.transform = 'translateY(-100px)';
-        burger.style.transform = 'translateY(-300px)';
-        burger.style.opacity = '0';
+        introScreen.style.display = 'none';
+        whatsNewScreen.style.display = 'flex';
+      }, 1500);
+
+    }, 3000);
+  }
+
+  async function toggleFullscreen() {
+    try {
+      const doc = window.document;
+      const docEl = container;
+
+      const requestFullscreen =
+        docEl.requestFullscreen ||
+        docEl.webkitRequestFullscreen;
+
+      const exitFullscreen =
+        doc.exitFullscreen ||
+        doc.webkitExitFullscreen;
+
+      const isFullscreen =
+        doc.fullscreenElement ||
+        doc.webkitFullscreenElement;
+
+      if (!isFullscreen) {
+        if (requestFullscreen)
+          await requestFullscreen.call(docEl);
+      } else {
+        if (exitFullscreen)
+          await exitFullscreen.call(doc);
+      }
+    } catch (err) {}
+  }
+
+  function openCredits() {
+    creditsScreen.style.display = 'flex';
+  }
+
+  function closeCredits() {
+    creditsScreen.style.display = 'none';
+  }
+
+  const NORMAL_OBSTACLES = [
+    {
+      name: 'spike',
+      className: 'type-spike',
+      width: 40,
+      height: 45
+    },
+    {
+      name: 'wall',
+      className: 'type-wall',
+      width: 45,
+      height: 85
+    },
+    {
+      name: 'stairs',
+      className: 'type-stairs',
+      width: 65,
+      height: 60
+    }
+  ];
+
+  function jump() {
+    if (
+      isGameOver ||
+      !isGameStarted ||
+      isCutscene
+    ) {
+      return;
+    }
+
+    if (jumpCount < 2) {
+      velocity = 16;
+      isJumping = true;
+      jumpCount++;
+    }
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.code === 'Space' || e.code === 'ArrowUp') {
+      e.preventDefault();
+      jump();
+    }
+  });
+
+  clickZone.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    jump();
+  });
+
+  clickZone.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    jump();
+  });
+
+  function startGame() {
+    mainMenu.style.display = 'none';
+    clickZone.style.display = 'block';
+    isGameStarted = true;
+    resetGame();
+  }
+  function resetGame() {
+    lives = 3;
+    score = 0;
+
+    // Сбрасываем ускорение по рубежам
+    lastSpeedMilestone = 0;
+
+    spikeSpeed = baseSpeed;
+    isGameOver = false;
+    rewardGivenThisGame = false;
+    isSuperRevived = false;
+    isInvulnerable = false;
+    isAcidMode = false;
+    isCutscene = false;
+    burgerY = 0;
+    velocity = 0;
+    isJumping = false;
+    jumpCount = 0;
+
+    container.classList.remove('stomach-theme');
+    ground.classList.remove('stomach-ground');
+
+    giantHand.style.transform = 'translateY(0px)';
+    burger.style.opacity = '1';
+    level2Title.style.opacity = '0';
+
+    updateLivesDisplay();
+
+    scoreDisplay.innerText = `Очки: 000000`;
+    gameOverScreen.style.display = 'none';
+
+    resetObstacle();
+    requestAnimationFrame(gameLoop);
+  }
+
+  function updateLivesDisplay() {
+    livesDisplay.innerText =
+      'Жизни: ' + '❤️'.repeat(Math.max(0, lives));
+  }
+
+  function resetObstacle() {
+    obstacleX = container.clientWidth + 50;
+
+    if (!isAcidMode) {
+      const randomObj =
+        NORMAL_OBSTACLES[
+          Math.floor(
+            Math.random() * NORMAL_OBSTACLES.length
+          )
+        ];
+
+      currentObstacleType = randomObj.name;
+      obstacle.className = randomObj.className;
+      obstacleWidth = randomObj.width;
+      obstacleHeight = randomObj.height;
+
+    } else {
+      currentObstacleType = 'acid-spike';
+      obstacle.className = 'type-acid-spike';
+      obstacleWidth = 45;
+      obstacleHeight = 55;
+    }
+
+    obstacle.style.right = '-100px';
+  }
+
+  function triggerLevel2Cutscene() {
+    isCutscene = true;
+
+    obstacleX = container.clientWidth + 200;
+    obstacle.style.left = obstacleX + 'px';
+
+    // 1. Рука спускается и хватает бургер
+    giantHand.style.transform =
+      'translateY(210px)';
+
+    setTimeout(() => {
+      playEatingSounds();
+
+      // 2. Рука поднимет бургер вверх
+      giantHand.style.transform =
+        'translateY(-100px)';
+
+      burger.style.transform =
+        'translateY(-300px)';
+
+      burger.style.opacity = '0';
+
+      setTimeout(() => {
+        // 3. Переход в желудок (Уровень 2)
+        isAcidMode = true;
+
+        container.classList.add('stomach-theme');
+        ground.classList.add('stomach-ground');
+
+        // Надпись Уровень 2
+        level2Title.style.opacity = '1';
 
         setTimeout(() => {
-          // 3. Переход в желудок (Уровень 2)
-          isAcidMode = true;
-          container.classList.add('stomach-theme');
-          ground.classList.add('stomach-ground');
+          level2Title.style.opacity = '0';
+        }, 2000);
 
-          // Надпись Уровень 2
-          level2Title.style.opacity = '1';
-          setTimeout(() => { level2Title.style.opacity = '0'; }, 2000);
+        // Спавн бургера обратно
+        burgerY = 0;
 
-          // Спавн бургера обратно
-          burgerY = 0;
-          burger.style.transform = 'translateY(0px)';
-          burger.style.opacity = '1';
-          
-          isCutscene = false;
-          resetObstacle();
-        }, 3000);
+        burger.style.transform =
+          'translateY(0px)';
 
+        burger.style.opacity = '1';
+
+        isCutscene = false;
+
+        resetObstacle();
+
+      }, 3000);
+
+    }, 1200);
+  }
+
+  function takeDamage() {
+    lives--;
+    updateLivesDisplay();
+
+    isInvulnerable = true;
+    burger.style.opacity = '0.4';
+
+    if (lives <= 0) {
+      isGameOver = true;
+      if (!rewardGivenThisGame) {
+        rewardGivenThisGame = true;
+        giveGameReward(score);
+      }
+      reviveOptions.style.display = 'flex';
+      reviveBtn.disabled = burgerBalanceValue < 10;
+      superReviveBtn.disabled = burgerBalanceValue < 15;
+      gameOverScreen.style.display = 'flex';
+
+    } else {
+      setTimeout(() => {
+        isInvulnerable = false;
+        burger.style.opacity = '1';
       }, 1200);
     }
+  }
 
-    function takeDamage() {
-      lives--;
-      updateLivesDisplay();
-      
-      isInvulnerable = true;
-      burger.style.opacity = '0.4';
+  function gameLoop() {
+    if (isGameOver) return;
 
-      if (lives <= 0) {
-        isGameOver = true;
-        gameOverScreen.style.display = 'flex';
-      } else {
-        setTimeout(() => {
-          isInvulnerable = false;
-          burger.style.opacity = '1';
-        }, 1200);
+    if (!isCutscene) {
+
+      // Очки накапливаются САМИ ОЧЕНЬ БЫСТРО с каждым кадром
+      score += isSuperRevived ? 20 : 10;
+
+      scoreDisplay.innerText =
+        `Очки: ${String(score).padStart(6, '0')}`;
+
+      /*
+        НОВАЯ СИСТЕМА УСКОРЕНИЯ
+
+        10 000 очков  -> +1 скорости
+        20 000 очков  -> +1 скорости
+        30 000 очков  -> +1 скорости
+        40 000 очков  -> +1 скорости
+        и т.д.
+
+        При этом старое ускорение +0.15
+        за каждое пройденное препятствие
+        тоже остаётся.
+      */
+
+      const speedMilestone =
+        Math.min(Math.floor(score / 10000), 6);
+
+      if (speedMilestone > lastSpeedMilestone) {
+        lastSpeedMilestone = speedMilestone;
+        spikeSpeed += 1;
       }
-    }
 
-    function gameLoop() {
-      if (isGameOver) return;
+      // Запуск кат-сцены ровно на 100,000 (100k) очков
+      if (score >= 100000 && !isAcidMode) {
+        triggerLevel2Cutscene();
+        requestAnimationFrame(gameLoop);
+        return;
+      }
 
-      if (!isCutscene) {
-        // Очки накапливаются САМИ ОЧЕНЬ БЫСТРО с каждым кадром
-        score += 10; 
-        scoreDisplay.innerText = `Очки: ${String(score).padStart(6, '0')}`;
+      // Физика прыжка
+      if (isJumping) {
+        burgerY += velocity;
+        velocity -= gravity;
 
-        // Запуск кат-сцены ровно на 100,000 (100k) очков
-        if (score >= 100000 && !isAcidMode) {
-          triggerLevel2Cutscene();
-          requestAnimationFrame(gameLoop);
-          return;
-        }
-
-        // Физика прыжка
-        if (isJumping) {
-          burgerY += velocity;
-          velocity -= gravity;
-          if (burgerY <= 0) {
-            burgerY = 0;
-            isJumping = false;
-          }
-        }
-        burger.style.bottom = (60 + burgerY) + 'px';
-
-        // Движение препятствия
-        obstacleX -= spikeSpeed;
-        obstacle.style.left = obstacleX + 'px';
-
-        // Препятствие ушло за экран -> просто спавним новое без каких-либо начислений очков
-        if (obstacleX < -obstacleWidth) {
-          spikeSpeed += 0.15;
-          resetObstacle();
-        }
-
-        // Проверка столкновений
-        const burgerLeft = 80;
-        const burgerRight = 80 + 50;
-        const obstacleLeft = obstacleX;
-        const obstacleRight = obstacleX + obstacleWidth;
-
-        if (
-          burgerRight > obstacleLeft && 
-          burgerLeft < obstacleRight && 
-          burgerY < (obstacleHeight - 10)
-        ) {
-          if (!isInvulnerable) {
-            takeDamage();
-          }
+        if (burgerY <= 0) {
+          burgerY = 0;
+          isJumping = false;
+          jumpCount = 0;
+          jumpCount = 0;
         }
       }
 
-      requestAnimationFrame(gameLoop);
+      burger.style.bottom =
+        (60 + burgerY) + 'px';
+
+      // Движение препятствия
+      obstacleX -= spikeSpeed;
+      obstacle.style.left =
+        obstacleX + 'px';
+
+      // Препятствие ушло за экран
+      // -> просто спавним новое
+      // -> старое ускорение остаётся
+      if (obstacleX < -obstacleWidth) {
+        spikeSpeed += 0.15;
+        resetObstacle();
+      }
+
+      // Проверка столкновений
+      const burgerLeft = 80;
+      const burgerRight = 80 + 50;
+
+      const obstacleLeft = obstacleX;
+      const obstacleRight =
+        obstacleX + obstacleWidth;
+
+      if (
+        burgerRight > obstacleLeft &&
+        burgerLeft < obstacleRight &&
+        burgerY < (obstacleHeight - 10)
+      ) {
+        if (!isInvulnerable) {
+          takeDamage();
+        }
+      }
     }
 
-    // Старт загрузки
-    loadSavedCodes();
-  </script>
+    requestAnimationFrame(gameLoop);
+  }
+
+  // Старт загрузки кодов
+  loadSavedCodes();
+  updateBurgerBalance();
+
+  /*
+    ЗАПУСК ТИТРОВ
+
+    При открытии страницы:
+    Company Piston
+       ↓
+    экран ввода кода
+       ↓
+    главное меню
+  */
+  authScreen.style.display = 'none';
+  adminScreen.style.display = 'none';
+  mainMenu.style.display = 'none';
+  introScreen.style.display = 'flex';
+  introScreen.style.opacity = '1';
+
+  triggerIntroAnimation();
+
+</script>
 </body>
 </html>
-
