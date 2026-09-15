@@ -620,11 +620,11 @@
       if (isGameOver) return;
 
       if (!isCutscene) {
-        // Старая система: Очки быстро прибавляются автоматически каждый кадр!
-        score += 80;
+        // Очки накапливаются САМИ ОЧЕНЬ БЫСТРО с каждым кадром
+        score += 350; 
         scoreDisplay.innerText = `Очки: ${String(score).padStart(6, '0')}`;
 
-        // Кат-сцена запускается ровно на 100 000 (100k) очков
+        // Запуск кат-сцены ровно на 100,000 (100k) очков
         if (score >= 100000 && !isAcidMode) {
           triggerLevel2Cutscene();
           requestAnimationFrame(gameLoop);
@@ -646,6 +646,7 @@
         obstacleX -= spikeSpeed;
         obstacle.style.left = obstacleX + 'px';
 
+        // Препятствие ушло за экран -> просто спавним новое без каких-либо начислений очков
         if (obstacleX < -obstacleWidth) {
           spikeSpeed += 0.15;
           resetObstacle();
