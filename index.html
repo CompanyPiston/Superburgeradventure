@@ -530,7 +530,7 @@
       level2Title.style.opacity = '0';
 
       updateLivesDisplay();
-      scoreDisplay.innerText = `Очки: 00000`;
+      scoreDisplay.innerText = `Очки: 000000`;
       gameOverScreen.style.display = 'none';
       
       resetObstacle();
@@ -620,6 +620,17 @@
       if (isGameOver) return;
 
       if (!isCutscene) {
+        // Старая система: Очки быстро прибавляются автоматически каждый кадр!
+        score += 80;
+        scoreDisplay.innerText = `Очки: ${String(score).padStart(6, '0')}`;
+
+        // Кат-сцена запускается ровно на 100 000 (100k) очков
+        if (score >= 100000 && !isAcidMode) {
+          triggerLevel2Cutscene();
+          requestAnimationFrame(gameLoop);
+          return;
+        }
+
         // Физика прыжка
         if (isJumping) {
           burgerY += velocity;
@@ -636,16 +647,8 @@
         obstacle.style.left = obstacleX + 'px';
 
         if (obstacleX < -obstacleWidth) {
-          score += 10;
-          scoreDisplay.innerText = `Очки: ${String(score).padStart(5, '0')}`;
-          
-          // Проверка перехода на Уровень 2
-          if (score >= 100 && !isAcidMode) {
-            triggerLevel2Cutscene();
-          } else {
-            spikeSpeed += 0.25;
-            resetObstacle();
-          }
+          spikeSpeed += 0.15;
+          resetObstacle();
         }
 
         // Проверка столкновений
