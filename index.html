@@ -235,7 +235,7 @@
     }
     #ui {
       position: absolute; top: 15px; left: 20px; display: flex; gap: 20px;
-      font-size: 20px; font-weight: bold; color: white; text-shadow: 2px 2px 4px #000; z-index: 4;
+      font-size: 20px; font-weight: bold; color: white; text-shadow: 2px 2px 4px #000; z-index: 80;
     }
 
     #game-over-screen {
@@ -355,6 +355,157 @@
 
   
 
+    /* Щит */
+    #shield-btn {
+      display: none;
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 80;
+      width: 132px;
+      padding: 12px 8px;
+      border: none;
+      border-radius: 14px 0 0 14px;
+      background: linear-gradient(180deg, #4da6ff, #2674d9);
+      color: white;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 5px 0 #1855a5, 0 0 18px rgba(40,140,255,0.35);
+      transform-origin: right center;
+    }
+    #shield-btn.active {
+      filter: brightness(1.18);
+      box-shadow: 0 5px 0 #1855a5, 0 0 24px rgba(40,170,255,0.65);
+    }
+    #shield-btn.shield-click {
+      animation: shieldButtonPress 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Защитное поле вокруг бургера */
+    #shield-field {
+      position: absolute;
+      width: 88px;
+      height: 88px;
+      left: 66px;
+      bottom: 46px;
+      z-index: 4;
+      pointer-events: none;
+      display: none;
+      border: 4px solid rgba(65, 178, 255, 0.92);
+      border-radius: 50%;
+      box-sizing: border-box;
+      background: radial-gradient(circle, rgba(35,145,255,0.10), rgba(0,100,255,0.03) 58%, rgba(0,170,255,0.18));
+      box-shadow: 0 0 12px rgba(35,145,255,0.85), inset 0 0 18px rgba(35,145,255,0.35);
+      opacity: 0;
+      transform: scale(0.72);
+      transition: opacity 0.28s ease, transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), filter 0.25s ease;
+    }
+    #shield-field.active {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+      animation: shieldGlow 1.5s ease-in-out infinite;
+    }
+    #shield-field.cracked {
+      filter: drop-shadow(0 0 10px rgba(0,180,255,0.9));
+      border-color: rgba(110,210,255,0.95);
+      background:
+        linear-gradient(48deg, transparent 46%, rgba(220,250,255,0.95) 47%, transparent 49%),
+        linear-gradient(125deg, transparent 47%, rgba(220,250,255,0.95) 48%, transparent 50%),
+        linear-gradient(78deg, transparent 50%, rgba(220,250,255,0.8) 51%, transparent 53%),
+        radial-gradient(circle, rgba(35,145,255,0.08), rgba(0,100,255,0.05) 58%, rgba(0,170,255,0.2));
+      animation: shieldCrack 0.45s ease-out both, shieldGlow 1.5s ease-in-out infinite 0.45s;
+    }
+    #shield-field.breaking {
+      animation: shieldBreak 0.45s ease-out forwards;
+    }
+    @keyframes shieldButtonPress {
+      0% { transform: translateY(-50%) scale(1); }
+      35% { transform: translateY(-50%) scale(0.92); }
+      100% { transform: translateY(-50%) scale(1); }
+    }
+    @keyframes shieldGlow {
+      0%, 100% { box-shadow: 0 0 12px rgba(35,145,255,0.75), inset 0 0 18px rgba(35,145,255,0.30); }
+      50% { box-shadow: 0 0 25px rgba(35,180,255,1), inset 0 0 24px rgba(35,145,255,0.50); }
+    }
+    @keyframes shieldCrack {
+      0% { transform: scale(1); opacity: 1; }
+      45% { transform: scale(1.08) rotate(1deg); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes shieldBreak {
+      0% { opacity: 1; transform: scale(1); filter: brightness(1.5); }
+      100% { opacity: 0; transform: scale(1.32); filter: brightness(2.2); }
+    }
+
+    /* Админ-переключатель бессмертия */
+    #admin-shield-toggle {
+      display: none;
+      position: fixed;
+      right: 0;
+      top: calc(50% + 72px);
+      z-index: 80;
+      width: 132px;
+      padding: 12px 8px;
+      border: none;
+      border-radius: 14px 0 0 14px;
+      background: linear-gradient(180deg, #ff4d4d, #c91f1f);
+      color: white;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 5px 0 #8d1414, 0 0 18px rgba(255,50,50,0.35);
+      transform-origin: right center;
+    }
+    #admin-shield-toggle.active {
+      filter: brightness(1.18);
+      box-shadow: 0 5px 0 #8d1414, 0 0 25px rgba(255,55,55,0.75);
+    }
+    #admin-shield-toggle.admin-click {
+      animation: adminButtonPress 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    #admin-protection-field {
+      position: absolute;
+      width: 76px;
+      height: 76px;
+      left: 72px;
+      bottom: 52px;
+      z-index: 4;
+      pointer-events: none;
+      display: none;
+      border: 4px solid rgba(255,55,55,0.95);
+      border-radius: 50%;
+      box-shadow: 0 0 14px rgba(255,40,40,0.9), inset 0 0 16px rgba(255,40,40,0.35);
+      opacity: 0;
+      transform: scale(0.72);
+    }
+    #admin-protection-field.active {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+      animation: adminFieldGlow 1.2s ease-in-out infinite;
+    }
+    #obstacle.admin-breaking {
+      animation: obstacleAdminBreak 0.24s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      pointer-events: none;
+    }
+    @keyframes adminButtonPress {
+      0% { transform: translateY(-50%) scale(1); }
+      35% { transform: translateY(-50%) scale(0.92); }
+      100% { transform: translateY(-50%) scale(1); }
+    }
+    @keyframes adminFieldGlow {
+      0%, 100% { box-shadow: 0 0 12px rgba(255,40,40,0.75), inset 0 0 16px rgba(255,40,40,0.25); }
+      50% { box-shadow: 0 0 26px rgba(255,70,70,1), inset 0 0 23px rgba(255,40,40,0.5); }
+    }
+    @keyframes obstacleAdminBreak {
+      0% { opacity: 1; transform: scale(1) rotate(0deg); filter: brightness(1); }
+      45% { opacity: 0.9; transform: scale(1.16) rotate(5deg); filter: brightness(2); }
+      100% { opacity: 0; transform: scale(0.25) rotate(-12deg); filter: brightness(2.5); }
+    }
+
     /* Плавные анимации интерфейса */
     button, input, .screen, #burger-balance, #score-display, #lives-display, #burger, #obstacle, #ground, #giant-hand, #level2-title {
       transition: opacity 0.25s ease, transform 0.25s ease, filter 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
@@ -432,6 +583,8 @@
   <button id="fullscreen-btn" onclick="toggleFullscreen()">⛶ На весь экран</button>
 
   <div id="click-zone"></div>
+  <div id="shield-field"></div>
+  <div id="admin-protection-field"></div>
   <div id="burger-balance">🍔 0</div>
   <div id="reward-animation"></div>
 
@@ -456,6 +609,8 @@
   <div id="ui">
     <div id="lives-display">Жизни: ❤️❤️❤️</div>
     <div id="score-display">Очки: 00000</div>
+    <button id="shield-btn" onclick="useShield()">🛡️ Щит: готов</button>
+    <button id="admin-shield-toggle" onclick="toggleAdminShield()">🔴 Админ щит: ВЫКЛ</button>
   </div>
 
   <!-- Игровые элементы -->
@@ -503,6 +658,10 @@
   const reviveOptions = document.getElementById('revive-options');
   const reviveBtn = document.getElementById('revive-btn');
   const superReviveBtn = document.getElementById('super-revive-btn');
+  const shieldBtn = document.getElementById('shield-btn');
+  const shieldField = document.getElementById('shield-field');
+  const adminShieldToggle = document.getElementById('admin-shield-toggle');
+  const adminProtectionField = document.getElementById('admin-protection-field');
   const container = document.getElementById('game-container');
   const ground = document.getElementById('ground');
   const level2Title = document.getElementById('level2-title');
@@ -534,6 +693,11 @@
   let isAcidMode = false;
   let isCutscene = false;
   let isSuperRevived = false;
+  let shieldAvailable = true;
+  let shieldActive = false;
+  let shieldHits = 0;
+  let adminInfiniteMode = false;
+  let adminShieldEnabled = false;
 
   // Звуки через Web Audio API
   let audioCtx = null;
@@ -586,7 +750,9 @@
   }
 
   function updateBurgerBalance() {
-    burgerBalance.innerText = `🍔 ${formatBurgerBalance(burgerBalanceValue)}`;
+    burgerBalance.innerText = adminInfiniteMode
+      ? '🍔 ∞'
+      : `🍔 ${formatBurgerBalance(burgerBalanceValue)}`;
   }
 
   function saveBurgerBalance() {
@@ -611,8 +777,12 @@
   function giveGameReward(finalScore) {
     const reward = getGameReward(finalScore);
     if (reward > 0) {
-      burgerBalanceValue += reward;
-      saveBurgerBalance();
+      if (!adminInfiniteMode) {
+        burgerBalanceValue += reward;
+        saveBurgerBalance();
+      } else {
+        updateBurgerBalance();
+      }
       showRewardAnimation(reward);
     } else {
       updateBurgerBalance();
@@ -625,15 +795,23 @@
   }
 
   function finishGameAndRestart() {
+    if (!rewardGivenThisGame) {
+      rewardGivenThisGame = true;
+      giveGameReward(score);
+    }
     gameOverScreen.style.display = 'none';
     reviveOptions.style.display = 'none';
+    shieldBtn.style.display = 'none';
+    adminShieldToggle.style.display = 'none';
     resetGame();
   }
 
   function reviveGame() {
-    if (burgerBalanceValue < 10) return;
-    burgerBalanceValue -= 10;
-    saveBurgerBalance();
+    if (!adminInfiniteMode && burgerBalanceValue < 10) return;
+    if (!adminInfiniteMode) {
+      burgerBalanceValue -= 10;
+      saveBurgerBalance();
+    }
     lives = 1;
     isGameOver = false;
     isInvulnerable = true;
@@ -652,15 +830,17 @@
   }
 
   function superReviveGame() {
-    if (burgerBalanceValue < 15) return;
-    burgerBalanceValue -= 15;
-    saveBurgerBalance();
+    if (!adminInfiniteMode && burgerBalanceValue < 15) return;
+    if (!adminInfiniteMode) {
+      burgerBalanceValue -= 15;
+      saveBurgerBalance();
+    }
     lives = 10;
     isGameOver = false;
     isSuperRevived = true;
     // Скорость сразу становится такой, как на рубеже 40 000 очков.
     spikeSpeed = baseSpeed + 4;
-    lastSpeedMilestone = 4;
+    lastSpeedMilestone = Math.min(Math.floor(score / 10000), 4);
     isInvulnerable = true;
     jumpCount = 0;
     velocity = 0;
@@ -680,11 +860,25 @@
     const code = accessInput.value.trim();
 
     if (code === "6490") {
+      adminInfiniteMode = false;
+      adminShieldToggle.style.display = 'none';
+      adminShieldEnabled = false;
       authScreen.style.display = 'none';
       burgerBalance.style.display = 'block';
       updateBurgerBalance();
       adminScreen.style.display = 'flex';
       renderCodeList();
+
+    } else if (code === "6450") {
+      // Скрытый админ-код: бесконечные щиты и бургеры.
+      adminInfiniteMode = true;
+      burgerBalanceValue = 999999999;
+      saveBurgerBalance();
+      authScreen.style.display = 'none';
+      burgerBalance.style.display = 'block';
+      updateBurgerBalance();
+      mainMenu.style.display = 'flex';
+      updateShieldButton();
 
     } else if (globalCodes.includes(code)) {
       authScreen.style.display = 'none';
@@ -838,7 +1032,10 @@
     mainMenu.style.display = 'none';
     clickZone.style.display = 'block';
     isGameStarted = true;
+    shieldBtn.style.display = 'block';
+    adminShieldToggle.style.display = adminInfiniteMode ? 'block' : 'none';
     resetGame();
+    updateShieldButton();
   }
   function resetGame() {
     lives = 3;
@@ -851,6 +1048,16 @@
     isGameOver = false;
     rewardGivenThisGame = false;
     isSuperRevived = false;
+    shieldAvailable = true;
+    shieldActive = false;
+    shieldHits = 0;
+    adminShieldEnabled = false;
+    adminShieldToggle.classList.remove('active', 'admin-click');
+    adminShieldToggle.innerText = '🔴 Админ щит: ВЫКЛ';
+    adminProtectionField.className = '';
+    adminProtectionField.style.display = 'none';
+    shieldField.className = '';
+    shieldField.style.display = 'none';
     isInvulnerable = false;
     isAcidMode = false;
     isCutscene = false;
@@ -867,6 +1074,7 @@
     level2Title.style.opacity = '0';
 
     updateLivesDisplay();
+    updateShieldButton();
 
     scoreDisplay.innerText = `Очки: 000000`;
     gameOverScreen.style.display = 'none';
@@ -878,6 +1086,119 @@
   function updateLivesDisplay() {
     livesDisplay.innerText =
       'Жизни: ' + '❤️'.repeat(Math.max(0, lives));
+  }
+
+  function updateShieldButton() {
+    if (adminInfiniteMode) {
+      shieldBtn.innerText = shieldActive ? '🛡️ Щит: активен' : '🛡️ Щит: ∞';
+      shieldBtn.disabled = false;
+      shieldBtn.classList.toggle('active', !shieldActive);
+      return;
+    }
+
+    shieldBtn.disabled = false;
+
+    if (shieldActive) {
+      shieldBtn.innerText = `🛡️ Щит: ${2 - shieldHits}/2`;
+      shieldBtn.classList.add('active');
+    } else if (shieldAvailable) {
+      shieldBtn.innerText = '🛡️ Щит: готов';
+      shieldBtn.classList.add('active');
+    } else if (burgerBalanceValue >= 5) {
+      shieldBtn.innerText = '🛡️ Щит: купить за 5 🍔';
+      shieldBtn.classList.remove('active');
+    } else {
+      shieldBtn.innerText = '🛡️ Щит: 5 🍔';
+      shieldBtn.classList.remove('active');
+    }
+  }
+
+  function animateShieldButton() {
+    shieldBtn.classList.remove('shield-click');
+    void shieldBtn.offsetWidth;
+    shieldBtn.classList.add('shield-click');
+  }
+
+  function activateShield() {
+    shieldActive = true;
+    shieldHits = 0;
+    shieldField.classList.remove('cracked', 'breaking');
+    shieldField.style.display = 'block';
+    requestAnimationFrame(() => shieldField.classList.add('active'));
+    animateShieldButton();
+    updateShieldButton();
+  }
+
+  function breakShield() {
+    shieldActive = false;
+    shieldHits = 0;
+    shieldField.classList.remove('cracked');
+    shieldField.classList.add('breaking');
+
+    setTimeout(() => {
+      shieldField.className = '';
+      shieldField.style.display = 'none';
+    }, 450);
+
+    if (adminInfiniteMode) {
+      shieldAvailable = true;
+    } else {
+      shieldAvailable = false;
+    }
+    updateShieldButton();
+  }
+
+  function animateAdminShieldButton() {
+    adminShieldToggle.classList.remove('admin-click');
+    void adminShieldToggle.offsetWidth;
+    adminShieldToggle.classList.add('admin-click');
+  }
+
+  function toggleAdminShield() {
+    if (!adminInfiniteMode) return;
+    animateAdminShieldButton();
+    adminShieldEnabled = !adminShieldEnabled;
+    adminShieldToggle.classList.toggle('active', adminShieldEnabled);
+    adminShieldToggle.innerText = adminShieldEnabled
+      ? '🔴 Админ щит: ВКЛ'
+      : '🔴 Админ щит: ВЫКЛ';
+
+    if (adminShieldEnabled) {
+      adminProtectionField.style.display = 'block';
+      requestAnimationFrame(() => adminProtectionField.classList.add('active'));
+    } else {
+      adminProtectionField.classList.remove('active');
+      setTimeout(() => {
+        if (!adminShieldEnabled) adminProtectionField.style.display = 'none';
+      }, 260);
+    }
+  }
+
+  function breakObstacleWithAdminShield() {
+    if (!adminShieldEnabled || obstacle.classList.contains('admin-breaking')) return;
+    obstacle.classList.add('admin-breaking');
+    setTimeout(() => {
+      obstacle.classList.remove('admin-breaking');
+      resetObstacle();
+    }, 240);
+  }
+
+  function useShield() {
+    animateShieldButton();
+
+    if (shieldActive) return;
+
+    if (shieldAvailable || adminInfiniteMode) {
+      if (!adminInfiniteMode) shieldAvailable = false;
+      activateShield();
+      return;
+    }
+
+    if (burgerBalanceValue >= 5) {
+      burgerBalanceValue -= 5;
+      saveBurgerBalance();
+      activateShield();
+    }
   }
 
   function resetObstacle() {
@@ -960,6 +1281,30 @@
   }
 
   function takeDamage() {
+    // Щит срабатывает только если игрок заранее активировал его кнопкой.
+    // Даже в режиме 6450 поле не включается автоматически от удара.
+    if (shieldActive) {
+      shieldHits++;
+      animateShieldButton();
+
+      if (shieldHits === 1) {
+        shieldField.classList.add('cracked');
+        updateShieldButton();
+      } else {
+        breakShield();
+      }
+
+      isInvulnerable = true;
+      burger.style.opacity = '0.65';
+      setTimeout(() => {
+        if (!isGameOver) {
+          isInvulnerable = false;
+          burger.style.opacity = '1';
+        }
+      }, 900);
+      return;
+    }
+
     lives--;
     updateLivesDisplay();
 
@@ -968,13 +1313,11 @@
 
     if (lives <= 0) {
       isGameOver = true;
-      if (!rewardGivenThisGame) {
-        rewardGivenThisGame = true;
-        giveGameReward(score);
-      }
+      // Награда выдаётся только за окончательный результат матча.
+      // Поэтому после возрождения очки продолжают учитываться.
       reviveOptions.style.display = 'flex';
-      reviveBtn.disabled = burgerBalanceValue < 10;
-      superReviveBtn.disabled = burgerBalanceValue < 15;
+      reviveBtn.disabled = !adminInfiniteMode && burgerBalanceValue < 10;
+      superReviveBtn.disabled = !adminInfiniteMode && burgerBalanceValue < 15;
       gameOverScreen.style.display = 'flex';
 
     } else {
@@ -1018,7 +1361,7 @@
         spikeSpeed += 1;
       }
 
-      // Запуск кат-сцены ровно на 100,000 (100k) очков
+      // Запуск кат-сцены ровно на 70,000 (70k) очков
       if (score >= 70000 && !isAcidMode) {
         triggerLevel2Cutscene();
         requestAnimationFrame(gameLoop);
@@ -1040,6 +1383,9 @@
 
       burger.style.bottom =
         (60 + burgerY) + 'px';
+
+      shieldField.style.bottom =
+        (46 + burgerY) + 'px';
 
       // Движение препятствия
       obstacleX -= spikeSpeed;
@@ -1067,7 +1413,9 @@
         burgerLeft < obstacleRight &&
         burgerY < (obstacleHeight - 10)
       ) {
-        if (!isInvulnerable) {
+        if (adminShieldEnabled) {
+          breakObstacleWithAdminShield();
+        } else if (!isInvulnerable) {
           takeDamage();
         }
       }
