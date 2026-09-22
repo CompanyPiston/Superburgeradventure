@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Прыгающий Бургер - Epic Edition</title>
+  <title>Burger Sauteur - Édition Épique</title>
   <style>
     * {
       box-sizing: border-box;
@@ -192,7 +192,7 @@
       background-repeat: no-repeat;
       filter: drop-shadow(0 15px 15px rgba(0,0,0,0.6));
     }
-    /* НАДПИСЬ УРОВЕНЬ 2 */
+    /* НАДПИСЬ NIVEAU 2 */
     #level2-title {
       position: absolute;
       top: 40%;
@@ -266,48 +266,6 @@
       font-weight: bold;
       text-shadow: 2px 2px 4px #000;
       display: none;
-    }
-
-    /* Окно "Что нового" */
-    #whats-new-screen {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.94);
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 210;
-      color: white;
-      text-align: center;
-      padding: 30px;
-    }
-    #whats-new-screen h2 {
-      color: #f1c40f;
-      font-size: 34px;
-      margin-bottom: 25px;
-      text-shadow: 3px 3px 0 #000;
-    }
-    #whats-new-screen p {
-      font-size: 21px;
-      line-height: 1.7;
-      max-width: 620px;
-    }
-    #close-whats-new {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 45px;
-      height: 45px;
-      padding: 0;
-      border: none;
-      border-radius: 50%;
-      background: #e74c3c;
-      color: white;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 4px 0 #b93227;
     }
 
     /* Анимация награды */
@@ -528,7 +486,7 @@
       cursor: not-allowed;
     }
 
-    #whats-new-screen, #game-over-screen, #credits-screen, #main-menu, #auth-screen, #admin-screen {
+    #game-over-screen, #credits-screen, #main-menu, #auth-screen, #admin-screen {
       animation: screenFadeIn 0.45s ease both;
     }
 
@@ -551,20 +509,20 @@
 <div id="game-container">
   <!-- Экран входа по коду -->
   <div id="auth-screen" class="overlay-screen" style="display: none;">
-    <h2>ВВЕДИТЕ КОД ДОСТУПА</h2>
-    <input type="text" id="access-code-input" class="code-input" placeholder="Введите код..." maxlength="10">
-    <button class="action-btn" onclick="checkAccessCode()">Войти</button>
-    <p id="auth-error" style="color: #ff4757; display: none;">Неверный код!</p>
+    <h2>ENTREZ LE CODE D’ACCÈS</h2>
+    <input type="text" id="access-code-input" class="code-input" placeholder="Entrez le code..." maxlength="10">
+    <button class="action-btn" onclick="checkAccessCode()">Entrer</button>
+    <p id="auth-error" style="color: #ff4757; display: none;">Code incorrect !</p>
   </div>
 
   <!-- Меню создания кодов (Админ) -->
   <div id="admin-screen" class="overlay-screen" style="display: none;">
-    <button id="back-admin-btn" class="action-btn" onclick="exitAdminMenu()">← Назад</button>
-    <h2>МЕНЮ СОЗДАНИЯ КОДОВ</h2>
-    <input type="text" id="new-code-input" class="code-input" placeholder="Новый код..." maxlength="10">
-    <button class="action-btn" onclick="createNewCode()">Создать код</button>
+    <button id="back-admin-btn" class="action-btn" onclick="exitAdminMenu()">← Retour</button>
+    <h2>MENU DE CRÉATION DES CODES</h2>
+    <input type="text" id="new-code-input" class="code-input" placeholder="Nouveau code..." maxlength="10">
+    <button class="action-btn" onclick="createNewCode()">Créer le code</button>
 
-    <p style="font-size: 14px; margin-top: 5px;">Созданные коды:</p>
+    <p style="font-size: 14px; margin-top: 5px;">Codes créés :</p>
     <div id="code-list"></div>
   </div>
 
@@ -573,14 +531,7 @@
     <h1>Company Piston</h1>
   </div>
 
-  <div id="whats-new-screen">
-    <button id="close-whats-new" onclick="closeWhatsNew()">×</button>
-    <h2>ЧТО НОВОГО</h2>
-    <p>Добавлен доп. прыжок и система возрождений.<br>
-    Теперь после каждой катки ты получаешь бургеры за набранные очки!</p>
-  </div>
-
-  <button id="fullscreen-btn" onclick="toggleFullscreen()">⛶ На весь экран</button>
+  <button id="fullscreen-btn" onclick="toggleFullscreen()">⛶ Plein écran</button>
 
   <div id="click-zone"></div>
   <div id="shield-field"></div>
@@ -590,15 +541,15 @@
 
   <!-- Главное меню -->
   <div id="main-menu" style="display: none;">
-    <h1>ПРИКЛЮЧЕНИЯ БУРГЕРА</h1>
-    <button class="menu-btn" id="start-btn" onclick="startGame()">Начать</button>
-    <button class="menu-btn" id="credits-btn" onclick="openCredits()">Credits</button>
+    <h1>AVENTURES DU BURGER</h1>
+    <button class="menu-btn" id="start-btn" onclick="startGame()">Commencer</button>
+    <button class="menu-btn" id="credits-btn" onclick="openCredits()">Crédits</button>
   </div>
 
   <!-- Экран авторов -->
   <div id="credits-screen">
-    <button id="back-btn" onclick="closeCredits()">Назад</button>
-    <p>5 бургеров</p>
+    <button id="back-btn" onclick="closeCredits()">Retour</button>
+    <p>5 burgers</p>
   </div>
 
   <!-- Декоративные облака -->
@@ -607,14 +558,14 @@
 
   <!-- UI Игры -->
   <div id="ui">
-    <div id="lives-display">Жизни: ❤️❤️❤️</div>
-    <div id="score-display">Очки: 00000</div>
-    <button id="shield-btn" onclick="useShield()">🛡️ Щит: готов</button>
-    <button id="admin-shield-toggle" onclick="toggleAdminShield()">🔴 Админ щит: ВЫКЛ</button>
+    <div id="lives-display">Vies : ❤️❤️❤️</div>
+    <div id="score-display">Score : 00000</div>
+    <button id="shield-btn" onclick="useShield()">🛡️ Bouclier : prêt</button>
+    <button id="admin-shield-toggle" onclick="toggleAdminShield()">🔴 Bouclier admin : DÉSACTIVÉ</button>
   </div>
 
   <!-- Игровые элементы -->
-  <div id="level2-title">УРОВЕНЬ 2</div>
+  <div id="level2-title">NIVEAU 2</div>
   <div id="burger"></div>
   <div id="giant-hand"></div>
   <div id="obstacle" class="type-spike"></div>
@@ -622,12 +573,12 @@
 
   <!-- Конец игры -->
   <div id="game-over-screen">
-    <h1>ИГРА ОКОНЧЕНА</h1>
+    <h1>PARTIE TERMINÉE</h1>
     <div id="revive-options">
-      <button id="revive-btn" class="revive-btn" onclick="reviveGame()">Возрождение — 10 🍔</button>
-      <button id="super-revive-btn" class="revive-btn" onclick="superReviveGame()">Супер возрождение — 15 🍔 → 10 ❤️</button>
+      <button id="revive-btn" class="revive-btn" onclick="reviveGame()">Résurrection — 10 🍔</button>
+      <button id="super-revive-btn" class="revive-btn" onclick="superReviveGame()">Super résurrection — 15 🍔 → 10 ❤️</button>
     </div>
-    <button id="restart-btn" onclick="finishGameAndRestart()">Начать заново — 0 🍔</button>
+    <button id="restart-btn" onclick="finishGameAndRestart()">Recommencer — 0 🍔</button>
   </div>
 </div>
 
@@ -652,7 +603,6 @@
   const mainMenu = document.getElementById('main-menu');
   const creditsScreen = document.getElementById('credits-screen');
   const introScreen = document.getElementById('intro-screen');
-  const whatsNewScreen = document.getElementById('whats-new-screen');
   const burgerBalance = document.getElementById('burger-balance');
   const rewardAnimation = document.getElementById('reward-animation');
   const reviveOptions = document.getElementById('revive-options');
@@ -789,10 +739,6 @@
     }
   }
 
-  function closeWhatsNew() {
-    whatsNewScreen.style.display = 'none';
-    authScreen.style.display = 'flex';
-  }
 
   function finishGameAndRestart() {
     if (!rewardGivenThisGame) {
@@ -933,7 +879,7 @@
 
       setTimeout(() => {
         introScreen.style.display = 'none';
-        whatsNewScreen.style.display = 'flex';
+        authScreen.style.display = 'flex';
       }, 1500);
 
     }, 3000);
@@ -1053,7 +999,7 @@
     shieldHits = 0;
     adminShieldEnabled = false;
     adminShieldToggle.classList.remove('active', 'admin-click');
-    adminShieldToggle.innerText = '🔴 Админ щит: ВЫКЛ';
+    adminShieldToggle.innerText = '🔴 Bouclier admin : DÉSACTIVÉ';
     adminProtectionField.className = '';
     adminProtectionField.style.display = 'none';
     shieldField.className = '';
@@ -1076,7 +1022,7 @@
     updateLivesDisplay();
     updateShieldButton();
 
-    scoreDisplay.innerText = `Очки: 000000`;
+    scoreDisplay.innerText = `Score : 000000`;
     gameOverScreen.style.display = 'none';
 
     resetObstacle();
@@ -1085,12 +1031,12 @@
 
   function updateLivesDisplay() {
     livesDisplay.innerText =
-      'Жизни: ' + '❤️'.repeat(Math.max(0, lives));
+      'Vies : ' + '❤️'.repeat(Math.max(0, lives));
   }
 
   function updateShieldButton() {
     if (adminInfiniteMode) {
-      shieldBtn.innerText = shieldActive ? '🛡️ Щит: активен' : '🛡️ Щит: ∞';
+      shieldBtn.innerText = shieldActive ? '🛡️ Bouclier : actif' : '🛡️ Bouclier : ∞';
       shieldBtn.disabled = false;
       shieldBtn.classList.toggle('active', !shieldActive);
       return;
@@ -1102,13 +1048,13 @@
       shieldBtn.innerText = `🛡️ Щит: ${2 - shieldHits}/2`;
       shieldBtn.classList.add('active');
     } else if (shieldAvailable) {
-      shieldBtn.innerText = '🛡️ Щит: готов';
+      shieldBtn.innerText = '🛡️ Bouclier : prêt';
       shieldBtn.classList.add('active');
     } else if (burgerBalanceValue >= 5) {
-      shieldBtn.innerText = '🛡️ Щит: купить за 5 🍔';
+      shieldBtn.innerText = '🛡️ Bouclier : acheter pour 5 🍔';
       shieldBtn.classList.remove('active');
     } else {
-      shieldBtn.innerText = '🛡️ Щит: 5 🍔';
+      shieldBtn.innerText = '🛡️ Bouclier : 5 🍔';
       shieldBtn.classList.remove('active');
     }
   }
@@ -1160,8 +1106,8 @@
     adminShieldEnabled = !adminShieldEnabled;
     adminShieldToggle.classList.toggle('active', adminShieldEnabled);
     adminShieldToggle.innerText = adminShieldEnabled
-      ? '🔴 Админ щит: ВКЛ'
-      : '🔴 Админ щит: ВЫКЛ';
+      ? '🔴 Bouclier admin : ACTIVÉ'
+      : '🔴 Bouclier admin : DÉSACTIVÉ';
 
     if (adminShieldEnabled) {
       adminProtectionField.style.display = 'block';
@@ -1337,7 +1283,7 @@
       score += isSuperRevived ? 20 : 10;
 
       scoreDisplay.innerText =
-        `Очки: ${String(score).padStart(6, '0')}`;
+        `Score : ${String(score).padStart(6, '0')}`;
 
       /*
         НОВАЯ СИСТЕМА УСКОРЕНИЯ
